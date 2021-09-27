@@ -4,6 +4,6 @@
   makes ? import sources.makes {}
 }:
 pkgs.mkShell {
-  buildInputs = with pkgs; [ nix niv makes ];
-  shellHook = "";
+  buildInputs = with pkgs; [ nix niv makes jq awscli2 gh git aws-sam-cli ];
+  shellHook = "m . /";
 }

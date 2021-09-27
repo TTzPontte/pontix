@@ -8,6 +8,11 @@
     enable = true;
     targets = [ "/" ];
   };
+  formatMarkdown = {
+    enable = true;
+    doctocArgs = [ "-u" ];
+    targets = [ "/nix/docs/README.md" ];
+  };
   inputs = rec {
     sources = import nix/sources.nix;
     nixpkgs = import sources.nixpkgs { overlays = [ ]; config = { }; };
