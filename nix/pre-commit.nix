@@ -6,11 +6,7 @@ inputs.pre-commit-hooks.run {
   hooks = {
     checks = {
       enable = true;
-      entry = ''
-        echo 'commit lint'
-        m . /lintGitCommitMsg
-        m . /check
-      '';
+      entry = "echo 'commit lint';m . /lintGitCommitMsg;m . /check";
     };
   };
 }
