@@ -1,1 +1,1 @@
-builtins.readFile ../docs/README.md
+builtins.readFile ./docs/README.md
