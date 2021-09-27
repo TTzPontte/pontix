@@ -4,6 +4,12 @@
 inputs.pre-commit-hooks.run {
   src = ../.;
   hooks = {
-    nixpkgs-fmt.enable = true;
+    checks = {
+      enable = true;
+      entry = ''
+        m . /lintGitCommitMsg
+        m ./check
+      '';
+    };
   };
 }

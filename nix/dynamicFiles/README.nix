@@ -1,1 +1,5 @@
-builtins.readFile ./docs/README.md
+{ ... }: {
+  name = "README.md";
+  to = "./";
+  file = ./docs/README.md;
+}

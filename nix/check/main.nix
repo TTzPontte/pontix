@@ -8,9 +8,7 @@ makeScript {
     bin = [ inputs.makes ];
   };
   entrypoint = ''
-    m . /lintGitCommitMsg
-    m . /dynamicFiles
-    m . /formatMarkdown
     m . /formatNix
+    m . /formatMarkdown
   '';
 }
