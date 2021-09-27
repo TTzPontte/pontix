@@ -34,5 +34,11 @@
         "type": "tarball",
         "url": "https://github.com/NixOS/nixpkgs/archive/7e9b0dff974c89e070da1ad85713ff3c20b0ca97.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "pre-commit-hooks": {
+        "branch": "master",
+        "repo": "git@github.com:cachix/pre-commit-hooks.nix",
+        "rev": "3ed0e618cebc1ff291c27b749cf7568959cac028",
+        "type": "git"
     }
 }

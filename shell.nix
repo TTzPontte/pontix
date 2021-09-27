@@ -1,9 +1,14 @@
-{ 
-  sources ? import nix/sources.nix,
-  pkgs ? import sources.nixpkgs { overlays = [] ; config = {}; },
-  makes ? import sources.makes {}
+{ inputs ? import ./nix/inputs.nix
+, pre-commit-hooks ? inputs.callPackage ./nix/pre-commit.nix { inherit inputs; }
 }:
-pkgs.mkShell {
-  buildInputs = with pkgs; [ nix niv makes jq awscli2 gh git aws-sam-cli ];
-  shellHook = "m . /";
+let
+  nixpkgs = inputs.nixpkgs;
+  makes = inputs.makes;
+  shellHook = pre-commit-hooks.shellHook;
+in
+nixpkgs.mkShell {
+  buildInputs = with nixpkgs; [ nix niv makes jq awscli2 gh git aws-sam-cli ];
+  shellHook = ''
+    ${shellHook}
+  '';
 }
