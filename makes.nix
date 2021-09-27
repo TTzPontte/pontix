@@ -4,6 +4,10 @@
 }: {
   extendingMakesDir = "/nix";
   projectIdentifier = "pontix";
+  inputs = rec {
+    sources = import nix/sources.nix;
+    nixpkgs = import sources.nixpkgs { overlays = [ ]; config = { }; };
+  };
   formatNix = {
     enable = true;
     targets = [ "/" ];
@@ -13,13 +17,9 @@
     doctocArgs = [ "-u" ];
     targets = [ "/nix/docs/README.md" ];
   };
-  inputs = rec {
-    sources = import nix/sources.nix;
-    nixpkgs = import sources.nixpkgs { overlays = [ ]; config = { }; };
-  };
   lintGitCommitMsg = {
     enable = true;
-    branch = "main";
+    branch = "master";
   };
   secretsForAwsFromEnv = {
     github = {
