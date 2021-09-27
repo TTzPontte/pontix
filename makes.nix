@@ -2,7 +2,7 @@
 , ...
 }: {
   extendingMakesDir = "/nix";
-  projectIdentifier = "pontix";
+  projectIdentifier = "pontixos";
   inputs = import ./nix/inputs.nix;
   formatNix = {
     enable = true;
