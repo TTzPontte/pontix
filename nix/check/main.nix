@@ -1,14 +1,19 @@
 { makeScript
 , inputs ? import ../inputs.nix
+, outputs
 , ...
 }:
 makeScript {
   name = "checks";
   searchPaths = {
-    bin = [ inputs.makes ];
+    bin = [
+      inputs.makes
+      outputs."/dynamicFiles"
+      outputs."/formatNix"
+    ];
   };
   entrypoint = ''
-    m . /formatNix
-    m . /formatMarkdown
+    dynamicFiles
+    format-nix
   '';
 }

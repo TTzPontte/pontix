@@ -7,6 +7,8 @@ inputs.pre-commit-hooks.run {
     checks = {
       enable = true;
       entry = ''
+        env
+        echo "PRE COMMIT HOOK"
         m . /lintGitCommitMsg
         m ./check
       '';
