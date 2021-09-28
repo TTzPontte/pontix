@@ -21,13 +21,13 @@ rec {
     env.SLACK_BOT_TOKEN_GIT_ACTION = ghSecret "SLACK_BOT_TOKEN_GIT_ACTION";
   };
   mkJob =
-    args@{ name
+    args@{ name ? "build"
     , steps ? [ ]
     , stepsBefore ? [ installNix ]
     , stepsAfter ? [ notifyStep ]
     , ...
-    }: args // {
-      "${name}" = {
+    }: {
+      ${name} = (builtins.removeAttrs args [ "name" ]) // {
         runs-on = "ubuntu-latest";
         steps = stepsBefore ++ steps ++ stepsAfter;
       };

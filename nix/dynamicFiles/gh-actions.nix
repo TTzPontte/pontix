@@ -9,8 +9,6 @@ rec {
   file = toFileYaml name {
     name = "CI";
     on.push.branches = [ "master" ];
-    jobs = mkJob {
-      name = "build";
-    };
+    jobs = mkJob { };
   };
 }
