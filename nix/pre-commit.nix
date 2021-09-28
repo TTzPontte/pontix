@@ -2,11 +2,11 @@
 , src ? ../.
 }:
 inputs.pre-commit-hooks.run {
-  src = ../.;
+  src = "../.";
   hooks = {
     pre-commit = {
       enable = true;
-      entry = "echo 'commit lint';m . /lintGitCommitMsg;m . /check";
+      entry = "m . /check";
     };
   };
 }

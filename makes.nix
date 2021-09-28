@@ -8,15 +8,6 @@
     enable = true;
     targets = [ "/" ];
   };
-  formatMarkdown = {
-    enable = true;
-    doctocArgs = [ "-u" ];
-    targets = [ "/" ];
-  };
-  lintGitCommitMsg = {
-    enable = true;
-    branch = "master";
-  };
   secretsForAwsFromEnv = {
     github = {
       accessKeyId = "AWS_ACCESS_KEY_ID";

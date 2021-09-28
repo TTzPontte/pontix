@@ -8,7 +8,5 @@ let
 in
 nixpkgs.mkShell {
   buildInputs = with nixpkgs; [ nix niv makes jq awscli2 gh git aws-sam-cli ];
-  shellHook = ''
-    ${shellHook}
-  '';
+  shellHook = shellHook;
 }
