@@ -1,13 +1,5 @@
 jobs:
-  name: update
-  steps:
-    - env:
-        GIPHY_TOKEN: ${{ secrets.GIPHY_TOKEN }}
-        SLACK_BOT_CHANNEL: ${{ secrets.SLACK_BOT_CHANNEL }}
-        SLACK_BOT_TOKEN_GIT_ACTION: ${{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}
-      name: notify devs
-      run: nix-shell run 'm . /notifySlack'
-  update:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: cachix/install-nix-action@v13
@@ -16,11 +8,13 @@ jobs:
           install_options: --tarball-url-prefix https://nixos-nix-install-tests.cachix.org/serve
           install_url: https://nixos-nix-install-tests.cachix.org/serve/i6laym9jw3wg9mw6ncyrk6gjx4l34vvx/install
       - env:
+          GIF_TAG: ${{ secrets.GIF_TAG }}
           GIPHY_TOKEN: ${{ secrets.GIPHY_TOKEN }}
           SLACK_BOT_CHANNEL: ${{ secrets.SLACK_BOT_CHANNEL }}
           SLACK_BOT_TOKEN_GIT_ACTION: ${{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}
         name: notify devs
         run: nix-shell run 'm . /notifySlack'
+  name: build
 name: CI
 'on':
   push:

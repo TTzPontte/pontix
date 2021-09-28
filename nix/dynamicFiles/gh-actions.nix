@@ -10,16 +10,7 @@ rec {
     name = "CI";
     on.push.branches = [ "master" ];
     jobs = mkJob {
-      name = "update";
-      steps = [
-        {
-          name = "notify devs";
-          run = makesIt "/notifySlack";
-          env.GIPHY_TOKEN = ghSecret "GIPHY_TOKEN";
-          env.SLACK_BOT_CHANNEL = ghSecret "SLACK_BOT_CHANNEL";
-          env.SLACK_BOT_TOKEN_GIT_ACTION = ghSecret "SLACK_BOT_TOKEN_GIT_ACTION";
-        }
-      ];
+      name = "build";
     };
   };
 }
