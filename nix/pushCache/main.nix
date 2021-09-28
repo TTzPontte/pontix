@@ -6,9 +6,8 @@
 makeScript {
   name = "push-cache";
   searchPaths = {
-    bin = [
-      inputs.nixpkgs.nix
-    ];
+    source = [ outputs."/secretsForAwsFromEnv/github" ];
+    bin = [ inputs.nixpkgs.nix ];
   };
   entrypoint = ''
     ramtmp="$(mktemp -p /dev/shm/)"
