@@ -20,13 +20,6 @@ jobs:
         with:
           persist-credentials: false
       - env:
-          GIF_TAG: ${{ secrets.GIF_TAG }}
-          GIPHY_TOKEN: ${{ secrets.GIPHY_TOKEN }}
-          SLACK_BOT_CHANNEL: ${{ secrets.SLACK_BOT_CHANNEL }}
-          SLACK_BOT_TOKEN_GIT_ACTION: ${{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}
-        name: notify devs
-        run: m . /notifySlack
-      - env:
           AWS_ACCESS_KEY_ID: ${{ secrets.TMP_AWS_ACCESS_KEY_ID }}
           AWS_DEFAULT_REGION: ${{ secrets.TMP_AWS_DEFAULT_REGION }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.TMP_AWS_SECRET_ACCESS_KEY }}
@@ -34,6 +27,13 @@ jobs:
           PONTIX_PRIV_KEY: ${{ secrets.PONTIX_PRIV_KEY }}
         name: pushCache
         run: m . /pushCache
+      - env:
+          GIF_TAG: ${{ secrets.GIF_TAG }}
+          GIPHY_TOKEN: ${{ secrets.GIPHY_TOKEN }}
+          SLACK_BOT_CHANNEL: ${{ secrets.SLACK_BOT_CHANNEL }}
+          SLACK_BOT_TOKEN_GIT_ACTION: ${{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}
+        name: notify devs
+        run: m . /notifySlack
 name: CI
 'on':
   push:
