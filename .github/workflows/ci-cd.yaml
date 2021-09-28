@@ -7,6 +7,9 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: installMakes
         run: nix-env -if https://github.com/fluidattacks/makes/archive/4a6ed2304fb8ea457340c874899f2aa060a88b8e.tar.gz
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
       - env:
           GIF_TAG: ${{ secrets.GIF_TAG }}
           GIPHY_TOKEN: ${{ secrets.GIPHY_TOKEN }}

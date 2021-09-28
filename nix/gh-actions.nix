@@ -10,6 +10,10 @@ rec {
       nix_path = "nixpkgs=channel:nixos-unstable";
     };
   };
+  checkout = {
+    uses = "actions/checkout@v2";
+    "with".persist-credentials = false;
+  };
   installMakes = {
     name = "installMakes";
     run = with builtins;"nix-env -if ${(fromJSON (readFile ./sources.json)).makes.url}";
@@ -25,7 +29,7 @@ rec {
   mkJob =
     args@{ name ? "build"
     , steps ? [ ]
-    , stepsBefore ? [ installNix installMakes ]
+    , stepsBefore ? [ installNix installMakes checkout ]
     , stepsAfter ? [ notifyStep ]
     , ...
     }: {
