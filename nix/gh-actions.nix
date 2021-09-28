@@ -48,7 +48,7 @@ rec {
     args@{ name ? "build"
     , steps ? [ ]
     , stepsBefore ? [ installNix installMakes checkout ]
-    , stepsAfter ? [ pushCache notifyStep ]
+    , stepsAfter ? [ notifyStep ]
     , ...
     }: {
       ${name} = (builtins.removeAttrs args [ "name" ]) // {
