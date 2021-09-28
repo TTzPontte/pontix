@@ -4,16 +4,16 @@ jobs:
     steps:
       - uses: cachix/install-nix-action@v13
         with:
-          extra_nix_config: experimental-features = nix-command flakes
-          install_options: --tarball-url-prefix https://nixos-nix-install-tests.cachix.org/serve
-          install_url: https://nixos-nix-install-tests.cachix.org/serve/i6laym9jw3wg9mw6ncyrk6gjx4l34vvx/install
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: installMakes
+        run: nix-env -if https://github.com/fluidattacks/makes/archive/4a6ed2304fb8ea457340c874899f2aa060a88b8e.tar.gz
       - env:
           GIF_TAG: ${{ secrets.GIF_TAG }}
           GIPHY_TOKEN: ${{ secrets.GIPHY_TOKEN }}
           SLACK_BOT_CHANNEL: ${{ secrets.SLACK_BOT_CHANNEL }}
           SLACK_BOT_TOKEN_GIT_ACTION: ${{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}
         name: notify devs
-        run: nix-shell --run 'm . /notifySlack'
+        run: m . /notifySlack
 name: CI
 'on':
   push:

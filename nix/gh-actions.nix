@@ -7,10 +7,12 @@ rec {
   installNix = {
     uses = "cachix/install-nix-action@v13";
     "with" = {
-      "install_url" = "https://nixos-nix-install-tests.cachix.org/serve/i6laym9jw3wg9mw6ncyrk6gjx4l34vvx/install";
-      "install_options" = "--tarball-url-prefix https://nixos-nix-install-tests.cachix.org/serve";
-      "extra_nix_config" = "experimental-features = nix-command flakes";
+      nix_path = "nixpkgs=channel:nixos-unstable";
     };
+  };
+  installMakes = {
+    name = "installMakes";
+    run = with builtins;"nix-env -if ${(fromJSON (readFile ./sources.json)).makes.url}";
   };
   notifyStep = {
     name = "notify devs";
@@ -23,7 +25,7 @@ rec {
   mkJob =
     args@{ name ? "build"
     , steps ? [ ]
-    , stepsBefore ? [ installNix ]
+    , stepsBefore ? [ installNix installMakes ]
     , stepsAfter ? [ notifyStep ]
     , ...
     }: {
@@ -32,6 +34,6 @@ rec {
         steps = stepsBefore ++ steps ++ stepsAfter;
       };
     };
-  makes = args: "nix-shell --run 'm ${args}'";
+  makes = args: "m ${args}";
   makesIt = args: makes ". ${args}";
 }
