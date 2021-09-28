@@ -32,6 +32,6 @@ rec {
         steps = stepsBefore ++ steps ++ stepsAfter;
       };
     };
-  makes = args: "nix-shell run 'm ${args}'";
+  makes = args: "nix-shell --run 'm ${args}'";
   makesIt = args: makes ". ${args}";
 }

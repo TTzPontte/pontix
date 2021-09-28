@@ -13,7 +13,7 @@ jobs:
           SLACK_BOT_CHANNEL: ${{ secrets.SLACK_BOT_CHANNEL }}
           SLACK_BOT_TOKEN_GIT_ACTION: ${{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}
         name: notify devs
-        run: nix-shell run 'm . /notifySlack'
+        run: nix-shell --run 'm . /notifySlack'
 name: CI
 'on':
   push:
