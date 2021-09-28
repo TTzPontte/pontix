@@ -13,6 +13,7 @@
       accessKeyId = "AWS_ACCESS_KEY_ID";
       secretAccessKey = "AWS_SECRET_ACCESS_KEY";
       defaultRegion = "AWS_DEFAULT_REGION";
+      sessionToken = "AWS_SESSION_TOKEN";
     };
   };
 }

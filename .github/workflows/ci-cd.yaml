@@ -4,6 +4,15 @@ jobs:
     steps:
       - uses: cachix/install-nix-action@v13
         with:
+          extra_nix_config: '
+
+            substituters = https://cache.nixos.org/ s3://pontte-nix-cache
+
+            trusted-public-keys = ${{ secrets.NIX_PUB_KEY }} ${{ secrets.PONTIX_PUB_KEY
+            }}
+
+
+            '
           nix_path: nixpkgs=channel:nixos-unstable
       - name: installMakes
         run: nix-env -if https://github.com/fluidattacks/makes/archive/4a6ed2304fb8ea457340c874899f2aa060a88b8e.tar.gz
@@ -17,6 +26,14 @@ jobs:
           SLACK_BOT_TOKEN_GIT_ACTION: ${{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}
         name: notify devs
         run: m . /notifySlack
+      - env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.TMP_AWS_ACCESS_KEY_ID }}
+          AWS_DEFAULT_REGION: ${{ secrets.TMP_AWS_DEFAULT_REGION }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.TMP_AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ secrets.TMP_AWS_SESSION_TOKEN }}
+          PONTIX_PRIV_KEY: ${{ secrets.PONTIX_PRIV_KEY }}
+        name: pushCache
+        run: m . /pushCache
 name: CI
 'on':
   push:
