@@ -26,29 +26,38 @@ rec {
     name = "installMakes";
     run = with builtins;"nix-env -if ${(fromJSON (readFile ./sources.json)).makes.url}";
   };
+  awsCredentials = {
+    AWS_ACCESS_KEY_ID = ghSecret "TMP_AWS_ACCESS_KEY_ID";
+    AWS_DEFAULT_REGION = ghSecret "TMP_AWS_DEFAULT_REGION";
+    AWS_SECRET_ACCESS_KEY = ghSecret "TMP_AWS_SECRET_ACCESS_KEY";
+    AWS_SESSION_TOKEN = ghSecret "TMP_AWS_SESSION_TOKEN";
+  };
   pushCache = {
     name = "pushCache";
     run = makesIt "/pushCache";
-    env.AWS_ACCESS_KEY_ID = ghSecret "TMP_AWS_ACCESS_KEY_ID";
-    env.AWS_DEFAULT_REGION = ghSecret "TMP_AWS_DEFAULT_REGION";
-    env.AWS_SECRET_ACCESS_KEY = ghSecret "TMP_AWS_SECRET_ACCESS_KEY";
-    env.AWS_SESSION_TOKEN = ghSecret "TMP_AWS_SESSION_TOKEN";
-    env.PONTIX_PRIV_KEY = ghSecret "PONTIX_PRIV_KEY";
+    env = awsCredentials // { PONTIX_PRIV_KEY = ghSecret "PONTIX_PRIV_KEY"; };
   };
   notifyStep = {
     name = "notify devs";
     run = makesIt "/notifySlack";
-    env.GIPHY_TOKEN = ghSecret "GIPHY_TOKEN";
     env.GIF_TAG = ghSecret "GIF_TAG";
+    env.GIPHY_TOKEN = ghSecret "GIPHY_TOKEN";
     env.SLACK_BOT_CHANNEL = ghSecret "SLACK_BOT_CHANNEL";
     env.SLACK_BOT_TOKEN_GIT_ACTION = ghSecret "SLACK_BOT_TOKEN_GIT_ACTION";
-
   };
+  checkAWSCredentials = {
+    name = "pushCache";
+    run = makesIt "/checkAWSCredentials";
+    env = awsCredentials;
+  };
+  defaultSteps = [ ];
+  defaultInitialSteps = [ installNix installMakes checkout ];
+  defailtFinalSteps = [ notifyStep ];
   mkJob =
     args@{ name ? "build"
-    , steps ? [ ]
-    , stepsBefore ? [ installNix installMakes checkout ]
-    , stepsAfter ? [ notifyStep ]
+    , steps ? defaultSteps
+    , stepsBefore ? defaultInitialSteps
+    , stepsAfter ? defailtFinalSteps
     , ...
     }: {
       ${name} = (builtins.removeAttrs args [ "name" ]) // {
