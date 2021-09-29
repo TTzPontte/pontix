@@ -11,7 +11,10 @@ makeScript {
   };
   entrypoint = ''
     cat $AWS_SHARED_CREDENTIALS_FILE
-    echo "$AWS_DEFAULT_RESION"
+    echo "$AWS_DEFAULT_REGION"
+    echo "$AWS_SESSION_TOKEN"
+    echo "$AWS_ACCESS_KEY_ID"
+    echo "$AWS_SECRET_ACCESS_KEY"
     aws sts get-caller-identity
   '';
 }
