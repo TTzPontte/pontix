@@ -59,7 +59,7 @@ rec {
     run = makesIt "/checkAWSCredentials";
   };
   defaultSteps = [ ];
-  defaultInitialSteps = [ installNix installMakes checkout ];
+  defaultInitialSteps = [ installNix installMakes checkout checkAWSCredentials ];
   defailtFinalSteps = [ notifyStep ];
   mkJob =
     args@{ name ? "build"
