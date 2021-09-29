@@ -10,7 +10,6 @@ makeScript {
     bin = [ inputs.nixpkgs.awscli2 ];
   };
   entrypoint = ''
-    echo "$AWS_DEFAULT_REGION"
     echo "$AWS_SESSION_TOKEN"
     echo "$AWS_ACCESS_KEY_ID"
     echo "$AWS_SECRET_ACCESS_KEY"
