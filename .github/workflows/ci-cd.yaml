@@ -24,7 +24,7 @@ jobs:
           AWS_DEFAULT_REGION: ${{ secrets.TMP_AWS_DEFAULT_REGION }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.TMP_AWS_SECRET_ACCESS_KEY }}
           AWS_SESSION_TOKEN: ${{ secrets.TMP_AWS_SESSION_TOKEN }}
-        name: pushCache
+        name: checkAWSCredentials
         run: m . /checkAWSCredentials
       - env:
           GIF_TAG: ${{ secrets.GIF_TAG }}

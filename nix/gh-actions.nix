@@ -54,7 +54,7 @@ rec {
     env.SLACK_BOT_TOKEN_GIT_ACTION = ghSecret "SLACK_BOT_TOKEN_GIT_ACTION";
   };
   checkAWSCredentials = {
-    name = "pushCache";
+    name = "checkAWSCredentials";
     env = awsCredentials;
     run = makesIt "/checkAWSCredentials";
   };
