@@ -2,7 +2,13 @@ rec {
   ghEnv = parentKey: key: "\${{ ${parentKey}.${key} }}";
   ghSecret = key: ghEnv "secrets" key;
   toCron = { minute ? "*", hour ? "*", day ? "*", month ? "*", weekDay ? "*" }:
-    with builtins; "${toString minute} ${toString hour} ${toString day} ${toString month} ${toString weekDay}";
+    with builtins; concatStringSep " " [
+      (toString minute)
+      (toString hour)
+      (toString day)
+      (toString month)
+      (toString weekDay)
+    ];
   toSchedule = cronDef: [{ cron = toCron cronDef; }];
   substituters = "https://cache.nixos.org/ s3://pontte-nix-cache";
   trusted-public-keys = "${ghSecret "NIX_PUB_KEY"} ${ghSecret "PONTIX_PUB_KEY"}";
@@ -35,7 +41,9 @@ rec {
   pushCache = {
     name = "pushCache";
     run = makesIt "/pushCache";
-    env = awsCredentials // { PONTIX_PRIV_KEY = ghSecret "PONTIX_PRIV_KEY"; };
+    env = awsCredentials // {
+      PONTIX_PRIV_KEY = ghSecret "PONTIX_PRIV_KEY";
+    };
   };
   notifyStep = {
     name = "notify devs";
@@ -47,8 +55,8 @@ rec {
   };
   checkAWSCredentials = {
     name = "pushCache";
-    run = makesIt "/checkAWSCredentials";
     env = awsCredentials;
+    run = makesIt "/checkAWSCredentials";
   };
   defaultSteps = [ ];
   defaultInitialSteps = [ installNix installMakes checkout ];
@@ -56,8 +64,8 @@ rec {
   mkJob =
     args@{ name ? "build"
     , steps ? defaultSteps
-    , stepsBefore ? defaultInitialSteps
     , stepsAfter ? defailtFinalSteps
+    , stepsBefore ? defaultInitialSteps
     , ...
     }: {
       ${name} = (builtins.removeAttrs args [ "name" ]) // {
