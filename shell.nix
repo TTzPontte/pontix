@@ -7,6 +7,15 @@ let
   shellHook = pre-commit-hooks.shellHook;
 in
 nixpkgs.mkShell {
-  buildInputs = with nixpkgs; [ nix niv makes jq awscli2 gh git aws-sam-cli ];
+  buildInputs = with nixpkgs; [
+    aws-sam-cli
+    awscli2
+    gh
+    git
+    jq
+    makes
+    nix 
+    niv
+  ];
   shellHook = shellHook;
 }
