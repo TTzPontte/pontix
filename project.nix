@@ -1,4 +1,5 @@
 { 
+  imports = [./modules/notify-slack.nix];
   # create hello.yaml file
   config.files.yaml."/hello.yaml".greeting = "Hello World!!";
   # enable .gitignore creation
