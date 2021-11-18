@@ -1,6 +1,6 @@
 {
-  config.files.cmds.awscli = true;
   config.files.cmds.yj = true;
+  config.files.cmds.awscli = true;
   config.files.alias.stack-params = ''
     aws cloudformation describe-stacks \
       --stack-name $1 \
