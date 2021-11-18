@@ -18,7 +18,7 @@
   config.files.alias.notify-slack = ''
     SLACK_BOT_TOKEN="${"$"}${config.notify-slack.api-key-env-var}"
     DATA=`echo '{}'|jq --arg C "$1" --arg T "$2" '.|.channel=$C|.text=$T'`
-    echo -s -X POST \
+    curl -s -X POST \
       -H "Content-type: application/json" \
       -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
       -d "$DATA" https://slack.com/api/chat.postMessage
