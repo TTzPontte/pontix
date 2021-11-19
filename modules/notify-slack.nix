@@ -41,6 +41,7 @@
     git fetch --tag
     export EDITOR=vim
     git changelog -n -p -x -l -t
+    convco version --bump
     HISTORY=`git changelog -n -p -x -l -t $(git describe --tags --abbrev=0)`
     echo $HISTORY
     HISTORY_TYPES=`echo HISTORY|grep -Eo ' \* [a-zA-Z]+\(?[^)]*\)?!?:'`
