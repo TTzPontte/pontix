@@ -14,6 +14,12 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}
         name: Build
         run: nix develop --command gh-actions-notify-slack-build
+      - env:
+          GIPHY_TOKEN: ${{ secrets.GIPHY_TOKEN }}
+          SLACK_BOT_CHANNEL: ${{ secrets.SLACK_BOT_CHANNEL }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}
+        name: Pos eploy
+        run: nix develop --command gh-actions-notify-slack-post-deploy
 "on":
   push:
     branches:

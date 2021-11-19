@@ -31,9 +31,11 @@
     ACTOR=":bust_in_silhouette: $GITHUB_ACTOR"
     notify-slack $SLACK_BOT_CHANNEL "$SHIP
     $PACKAGE
-    $ACTOR\n $PROD_GIF"
+    $ACTOR
+     $PROD_GIF"
   '';
   config.gh-actions.notify-slack.build = "notify-slack-gh-build";
+  config.gh-actions.notify-slack.post-deploy = "git tag v$(convco version --bump)";
   config.gh-actions.notify-slack.env.GIPHY_TOKEN = ''${"$"}{{ secrets.GIPHY_TOKEN }}'';
   config.gh-actions.notify-slack.env.SLACK_BOT_CHANNEL = ''${"$"}{{ secrets.SLACK_BOT_CHANNEL }}'';
   config.gh-actions.notify-slack.env.SLACK_BOT_TOKEN = ''${"$"}{{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}'';
