@@ -3,6 +3,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.4.0
+        with:
+          fetch-depth: 0
       - uses: cachix/install-nix-action@v15
         with:
           extra_nix_config: |
@@ -18,7 +20,7 @@ jobs:
           GIPHY_TOKEN: ${{ secrets.GIPHY_TOKEN }}
           SLACK_BOT_CHANNEL: ${{ secrets.SLACK_BOT_CHANNEL }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}
-        name: Pos eploy
+        name: Post Deploy
         run: nix develop --command gh-actions-notify-slack-post-deploy
 "on":
   push:
