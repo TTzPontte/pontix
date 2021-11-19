@@ -40,7 +40,7 @@
   config.gh-actions.notify-slack.post-deploy = ''
     git fetch --tag
     export EDITOR=vim
-    HISTORY=git changelog -n -p -x -l -t `git describe --tags --abbrev=0`
+    HISTORY=`git changelog -n -p -x -l -t $(git describe --tags --abbrev=0)`
     echo HISTORY
     HISTORY_TYPES=`echo HISTORY|grep -Eo ' \* [a-zA-Z]+\(?[^)]*\)?!?:'`
     VERSION_TYPE=patch
