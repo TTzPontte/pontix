@@ -32,6 +32,8 @@
     ACTOR=":bust_in_silhouette: $GITHUB_ACTOR"
     CHANGELOG=`sed '/^## /Q' <(convco changelog)`
     echo $CHANGELOG
+
+
     # notify-slack $SLACK_BOT_CHANNEL "$SHIP
     # $PACKAGE
     # $ACTOR
