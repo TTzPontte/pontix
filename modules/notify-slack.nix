@@ -39,13 +39,15 @@
   config.gh-actions.notify-slack.build = "notify-slack-gh-build";
   config.gh-actions.notify-slack.post-deploy = ''
     git fetch --tag
-    git changelog -n -p -x
     export EDITOR=vim
-    HISTORY=`git changelog -n -p -x|grep -Eo ' \* [a-zA-Z]+\(?[^)]*\)?!?:'`
+    HISTORY=git changelog -n -p -x -l -t `git describe --tags --abbrev=0`
+    echo HISTORY
+    HISTORY_TYPES=`echo HISTORY|grep -Eo ' \* [a-zA-Z]+\(?[^)]*\)?!?:'`
     VERSION_TYPE=patch
-    VERSION_TYPE=`echo $HISTORY| grep -q -E "* feat" && echo minor || echo $VERSION_TYPE`
-    VERSION_TYPE=`echo $HISTORY| grep -q -E "!:" && echo major || echo $VERSION_TYPE`
+    VERSION_TYPE=`echo $HISTORY_TYPES| grep -q -E "* feat" && echo minor || echo $VERSION_TYPE`
+    VERSION_TYPE=`echo $HISTORY_TYPES| grep -q -E "!:" && echo major || echo $VERSION_TYPE`
     echo $VERSION_TYPE
+    echo "hello"
   '';
   config.gh-actions.notify-slack.env.GIPHY_TOKEN = ''${"$"}{{ secrets.GIPHY_TOKEN }}'';
   config.gh-actions.notify-slack.env.SLACK_BOT_CHANNEL = ''${"$"}{{ secrets.SLACK_BOT_CHANNEL }}'';
