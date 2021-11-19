@@ -41,7 +41,7 @@
     git tag
     convco version --bump
     pwd
-    ls
+    ls -la
     git tag v$(convco version --bump)
     git push --tag
   '';
