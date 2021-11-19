@@ -39,6 +39,7 @@
   config.gh-actions.notify-slack.post-deploy = ''
     git fetch --tag
     git tag
+    convco --version
     convco version --bump -C $(git rev-parse --show-toplevel)
     pwd
     ls -la
