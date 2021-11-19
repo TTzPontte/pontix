@@ -2,8 +2,12 @@
   description = "Dev Environment";
 
   inputs.dsf.url = "github:cruel-intentions/devshell-files";
+  inputs.gha.url = "github:cruel-intentions/gh-actions";
 
-  outputs = inputs: inputs.dsf.lib.mkShell [ ./project.nix ];
+  outputs = inputs: inputs.dsf.lib.mkShell [
+    "${inputs.gha}/gh-actions.nix"
+    ./project.nix
+  ];
 
   nixConfig.substituters = [ "s3://pontte-nix-cache" ]; 
 }

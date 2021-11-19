@@ -33,4 +33,8 @@
     $PACKAGE
     $ACTOR\n $PROD_GIF"
   '';
+  config.gh-actions.notify-slack.build = "notify-slack-gh-build";
+  config.gh-actions.notify-slack.env.GIPHY_TOKEN = ''${"$"}{{ secrets.GIPHY_TOKEN }}'';
+  config.gh-actions.notify-slack.env.SLACK_BOT_CHANNEL = ''${"$"}{{ secrets.SLACK_BOT_CHANNEL }}'';
+  config.gh-actions.notify-slack.env.SLACK_BOT_TOKEN = ''${"$"}{{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}'';
 }
