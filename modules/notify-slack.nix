@@ -30,7 +30,8 @@
     SHIP=":ship: $(echo $GITHUB_REF|cut -f3 -d/)"
     PACKAGE=":package: $(echo $GITHUB_REPOSITORY|cut -f2 -d/) $(convco version --bump)"
     ACTOR=":bust_in_silhouette: $GITHUB_ACTOR"
-    # CHANGELOG="$(convco changelog 'v'"
+    CHANGELOG="$(git changelog -n -p -x -l)"
+    echo $CHANGELOG
     # notify-slack $SLACK_BOT_CHANNEL "$SHIP
     # $PACKAGE
     # $ACTOR
@@ -38,18 +39,9 @@
   '';
   config.gh-actions.notify-slack.build = "notify-slack-gh-build";
   config.gh-actions.notify-slack.post-deploy = ''
-    git fetch --tag
-    export EDITOR=vim
-    git changelog -n -p -x -l -t
     convco version --bump
-    HISTORY=`git changelog -n -p -x -l -t $(git describe --tags --abbrev=0)`
-    echo $HISTORY
-    HISTORY_TYPES=`echo HISTORY|grep -Eo ' \* [a-zA-Z]+\(?[^)]*\)?!?:'`
-    VERSION_TYPE=patch
-    VERSION_TYPE=`echo $HISTORY_TYPES| grep -q -E "* feat" && echo minor || echo $VERSION_TYPE`
-    VERSION_TYPE=`echo $HISTORY_TYPES| grep -q -E "!:" && echo major || echo $VERSION_TYPE`
-    echo $VERSION_TYPE
-    echo "hello"
+    git tag v$(convco version --bump)
+    git push --tag
   '';
   config.gh-actions.notify-slack.env.GIPHY_TOKEN = ''${"$"}{{ secrets.GIPHY_TOKEN }}'';
   config.gh-actions.notify-slack.env.SLACK_BOT_CHANNEL = ''${"$"}{{ secrets.SLACK_BOT_CHANNEL }}'';
