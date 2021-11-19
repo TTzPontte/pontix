@@ -3,7 +3,7 @@
   options.random-gif.tag = lib.mkOption {
     type = lib.types.nonEmptyStr;
     description = "random gif search tag";
-    default = "reacton";
+    default = "excited";
     example = "cry";
   };
   options.random-gif.rating = lib.mkOption {

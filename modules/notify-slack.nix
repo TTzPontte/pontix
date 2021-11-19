@@ -29,6 +29,7 @@
     SHIP=":ship: $(echo $GITHUB_REF|cut -f3 -d/)"
     PACKAGE=":package: [$(echo $GITHUB_REPOSITORY|cut -f2 -d/)] $(convco version --bump)"
     ACTOR=":bust_in_silhouette: $GITHUB_ACTOR"
+    # CHANGELOG="$(convco changelog 'v'"
     notify-slack $SLACK_BOT_CHANNEL "$SHIP
     $PACKAGE
     $ACTOR
