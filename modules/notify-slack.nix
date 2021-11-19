@@ -39,8 +39,7 @@
   config.gh-actions.notify-slack.post-deploy = ''
     git fetch --tag
     git tag
-    git rev-parse --show-toplevel
-    convco version --bump
+    convco version --bump -C $(git rev-parse --show-toplevel)
     pwd
     ls -la
     echo REF $GITHUB_REF
