@@ -1,6 +1,8 @@
-{ 
-  imports = [./modules/notify-slack.nix];
-  # create hello.yaml file
+{config, ...}:{ 
+  imports = [
+    ./modules/notify-slack.nix
+    ./modules/aws.nix
+  ];
   # enable .gitignore creation
   config.files.gitignore.enable = true;
   # add hello.yaml to .gitignore

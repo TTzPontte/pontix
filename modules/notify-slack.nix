@@ -38,7 +38,8 @@
     ACTOR=":bust_in_silhouette: $GITHUB_ACTOR"
     CHANGELOG=$(convco changelog|sed -n /\.\.\.HEAD/,/\.\.\.$(convco version)/p|head -n -2|tail -n +2)
     OUR_CHANGELOG=`echo $GITHUB_REF | grep -q -E "$GIFED_BRANCH" && echo "$CHANGELOG"`
-    notify-slack $SLACK_BOT_CHANNEL "$SHIP
+    notify-slack $SLACK_BOT_CHANNEL "
+      $SHIP
       $PACKAGE
       $ACTOR
       $OUR_CHANGELOG
