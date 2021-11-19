@@ -32,7 +32,6 @@
     ACTOR=":bust_in_silhouette: $GITHUB_ACTOR"
     CHANGELOG=`convco changelog|sed -n '/^####/,/^## /p'`
     echo $CHANGELOG
-    echo "no broken pipe"
     # notify-slack $SLACK_BOT_CHANNEL "$SHIP
     # $PACKAGE
     # $ACTOR
