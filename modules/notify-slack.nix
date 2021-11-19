@@ -13,6 +13,12 @@
     default = "SLACK_BOT_TOKEN";
     example = "SLACK_BOT_TOKEN";
   };
+  options.notify-slack.tag = lib.mkOption {
+    type = lib.types.bool;
+    description = "IF after notificaiton it also creates a TAG";
+    default = true;
+    example = false;
+  };
   config.files.cmds.curl = true;
   config.files.cmds.jq = true;
   config.files.cmds.git-extras = true;
@@ -39,7 +45,7 @@
        $PROD_GIF"
   '';
   config.gh-actions.notify-slack.build = "notify-slack-gh-build";
-  config.gh-actions.notify-slack.post-deploy = ''
+  config.gh-actions.notify-slack.post-deploy = lib.mkIf config.notify-slack.tag ''
     convco version --bump
     git tag v$(convco version --bump)
     git push --tag
