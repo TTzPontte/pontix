@@ -46,7 +46,7 @@
               };
               options.region = lib.mkOption {
                 description = "name of secret with AWS_DEFAULT_REGION";
-                default = "AWS_SECRET_ACCESS_KEY";
+                default = "AWS_DEFAULT_REGION";
               };
             };
           };
