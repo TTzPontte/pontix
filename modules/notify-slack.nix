@@ -30,14 +30,15 @@
     PACKAGE=":package: $(echo $GITHUB_REPOSITORY|cut -f2 -d/) $(convco version --bump)"
     ACTOR=":bust_in_silhouette: $GITHUB_ACTOR"
     # CHANGELOG="$(convco changelog 'v'"
-    notify-slack $SLACK_BOT_CHANNEL "$SHIP
-    $PACKAGE
-    $ACTOR
-     $PROD_GIF"
+    # notify-slack $SLACK_BOT_CHANNEL "$SHIP
+    # $PACKAGE
+    # $ACTOR
+    #  $PROD_GIF"
   '';
   config.gh-actions.notify-slack.build = "notify-slack-gh-build";
   config.gh-actions.notify-slack.post-deploy = ''
     git fetch --tag
+    git tag
     convco version --bump
     git tag v$(convco version --bump)
     git push --tag
