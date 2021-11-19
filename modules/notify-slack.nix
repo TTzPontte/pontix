@@ -35,11 +35,11 @@
     # $ACTOR
     #  $PROD_GIF"
   '';
-  config.files.cmds.nim-unwrapped = true;
   config.gh-actions.notify-slack.build = "notify-slack-gh-build";
   config.gh-actions.notify-slack.post-deploy = ''
     git fetch --tag
     git tag
+    git rev-parse --show-toplevel
     convco version --bump
     pwd
     ls -la
@@ -49,7 +49,6 @@
     echo SHA $GITHUB_SHA
     convco changelog $GITHUB_SHA
     convco version $GITHUB_SHA
-    nim --version
     git tag v$(convco version --bump)
     git push --tag
   '';
