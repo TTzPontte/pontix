@@ -27,7 +27,7 @@
     GIFED_BRANCH="${config.notify-slack.gifted-branch}"
     PROD_GIF=`echo $GITHUB_REF | grep -q -E "$GIFED_BRANCH" && random-gif|tail -n 1|jq -r .data.url`
     SHIP=":ship: $(echo $GITHUB_REF|cut -f3 -d/)"
-    PACKAGE=":package: [$(echo $GITHUB_REPOSITORY|cut -f2 -d/)]"
+    PACKAGE=":package: [$(echo $GITHUB_REPOSITORY|cut -f2 -d/)] $(convco version --bump)"
     ACTOR=":bust_in_silhouette: $GITHUB_ACTOR"
     notify-slack $SLACK_BOT_CHANNEL "$SHIP
     $PACKAGE
@@ -35,7 +35,11 @@
      $PROD_GIF"
   '';
   config.gh-actions.notify-slack.build = "notify-slack-gh-build";
-  config.gh-actions.notify-slack.post-deploy = "git tag v$(convco version --bump)";
+  config.gh-actions.notify-slack.post-deploy = ''
+    convco version --bump
+    git tag v$(convco version --bump)
+    git push --tag
+  '';
   config.gh-actions.notify-slack.env.GIPHY_TOKEN = ''${"$"}{{ secrets.GIPHY_TOKEN }}'';
   config.gh-actions.notify-slack.env.SLACK_BOT_CHANNEL = ''${"$"}{{ secrets.SLACK_BOT_CHANNEL }}'';
   config.gh-actions.notify-slack.env.SLACK_BOT_TOKEN = ''${"$"}{{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}'';
