@@ -12,6 +12,7 @@
   config.files.gitignore.template."Global/Diff" = true;
   # now we can use 'convco' command https://convco.github.io
   config.files.cmds.convco = true;
+  config.files.cmds.git-extras = true;
   # now we can use 'featw' command as alias to convco
   config.files.alias.feat = ''convco commit --feat $@'';
   config.files.alias.fix = ''convco commit --fix $@'';

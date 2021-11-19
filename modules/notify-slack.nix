@@ -15,6 +15,7 @@
   };
   config.files.cmds.curl = true;
   config.files.cmds.jq = true;
+  config.files.cmds.git-extras = true;
   config.files.alias.notify-slack = ''
     SLACK_BOT_TOKEN="${"$"}${config.notify-slack.api-key-env-var}"
     DATA=`echo '{}'|jq --arg C "$1" --arg T "$2" '.|.channel=$C|.text=$T'`
@@ -38,19 +39,11 @@
   config.gh-actions.notify-slack.build = "notify-slack-gh-build";
   config.gh-actions.notify-slack.post-deploy = ''
     git fetch --tag
-    git tag
-    convco --version
-    convco version --bump -C $(git rev-parse --show-toplevel)
-    pwd
-    ls -la
-    echo REF $GITHUB_REF
-    convco changelog $GITHUB_REF
-    convco version $GITHUB_REF
-    echo SHA $GITHUB_SHA
-    convco changelog $GITHUB_SHA
-    convco version $GITHUB_SHA
-    git tag v$(convco version --bump)
-    git push --tag
+    HISTORY=`git changelog -n -p -x|grep -Eo ' \* [a-zA-Z]+\(?[^)]*\)?!?:'`
+    VERSION_TYPE=patch
+    VERSION_TYPE=`echo $HISTORY| grep -q -E "* feat" && echo minor || echo $VERSION_TYPE`
+    VERSION_TYPE=`echo $HISTORY| grep -q -E "!:" && echo major || echo $VERSION_TYPE`
+    echo VERSION_TYPE
   '';
   config.gh-actions.notify-slack.env.GIPHY_TOKEN = ''${"$"}{{ secrets.GIPHY_TOKEN }}'';
   config.gh-actions.notify-slack.env.SLACK_BOT_CHANNEL = ''${"$"}{{ secrets.SLACK_BOT_CHANNEL }}'';
