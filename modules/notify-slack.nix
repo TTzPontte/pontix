@@ -27,7 +27,7 @@
     GIFED_BRANCH="${config.notify-slack.gifted-branch}"
     PROD_GIF=`echo $GITHUB_REF | grep -q -E "$GIFED_BRANCH" && random-gif|tail -n 1|jq -r .data.url`
     SHIP=":ship: $(echo $GITHUB_REF|cut -f3 -d/)"
-    PACKAGE=":package: [$(echo $GITHUB_REPOSITORY|cut -f2 -d/)] $(convco version --bump)"
+    PACKAGE=":package: $(echo $GITHUB_REPOSITORY|cut -f2 -d/) $(convco version --bump)"
     ACTOR=":bust_in_silhouette: $GITHUB_ACTOR"
     # CHANGELOG="$(convco changelog 'v'"
     notify-slack $SLACK_BOT_CHANNEL "$SHIP
@@ -37,6 +37,7 @@
   '';
   config.gh-actions.notify-slack.build = "notify-slack-gh-build";
   config.gh-actions.notify-slack.post-deploy = ''
+    git fetch --tag
     convco version --bump
     git tag v$(convco version --bump)
     git push --tag
