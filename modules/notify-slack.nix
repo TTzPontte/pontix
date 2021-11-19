@@ -31,16 +31,12 @@
     PACKAGE=":package: $(echo $GITHUB_REPOSITORY|cut -f2 -d/) $(convco version --bump)"
     ACTOR=":bust_in_silhouette: $GITHUB_ACTOR"
     CHANGELOG=$(convco changelog|sed -n /\.\.\.HEAD/,/\.\.\.$(convco version)/p|head -n -2|tail -n +2)
-    convco changelog
-    echo SOME SPAM
     OUR_CHANGELOG=`echo $GITHUB_REF | grep -q -E "$GIFED_BRANCH" && echo "$CHANGELOG"`
-    echo "$CHANGELOG"
-    echo "$OUR_CHANGELOG"
-    # notify-slack $SLACK_BOT_CHANNEL "$SHIP
-    #  $PACKAGE
-    #  $ACTOR
-    #  $OUR_CHANGELOG
-    #   $PROD_GIF"
+    notify-slack $SLACK_BOT_CHANNEL "$SHIP
+      $PACKAGE
+      $ACTOR
+      $OUR_CHANGELOG
+       $PROD_GIF"
   '';
   config.gh-actions.notify-slack.build = "notify-slack-gh-build";
   config.gh-actions.notify-slack.post-deploy = ''
