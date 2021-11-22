@@ -33,8 +33,8 @@
     CHANGELOG=$(convco changelog|sed -n /\.\.\.HEAD/,/\.\.\.$(convco version)/p|head -n -1|tail -n +2)
     OUR_CHANGELOG=`echo $GITHUB_REF | grep -q -E "$GIFED_BRANCH" && echo "$CHANGELOG"`
     notify-slack $SLACK_BOT_CHANNEL "
-      $SHIP
       $PACKAGE
+      $SHIP
       $ACTOR
       $OUR_CHANGELOG
       $PROD_GIF
