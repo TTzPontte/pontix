@@ -10,7 +10,8 @@
   config.files.alias.fix = ''convco commit --fix $@'';
   config.files.alias.chore = ''convco commit --chore $@'';
   config.files.alias.tag-it = ''
-    echo Tagging v$(convco version) to v$(convco version --bump)
+    echo Old tag v$(convco version)
+    echo New tag v$(convco version --bump)
     git tag v$(convco version --bump)
     git push --tag
   '';
