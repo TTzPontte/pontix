@@ -107,11 +107,11 @@
         "dsf": "dsf_2"
       },
       "locked": {
-        "lastModified": 1637303660,
-        "narHash": "sha256-0QXwnG5wjJrlfug8ZOImQKyKnEJ/upaxVGiNuw/gOI0=",
+        "lastModified": 1637606061,
+        "narHash": "sha256-O6GXaRMYhr38JfcAMjVzFg/kfHUg+g9BctR3EKFK14E=",
         "owner": "cruel-intentions",
         "repo": "gh-actions",
-        "rev": "54ab643c8e664cc62a594aae5bf6c7caffa2ed81",
+        "rev": "114a69f2724f60165b7beb1781b86fb0f4541fa1",
         "type": "github"
       },
       "original": {

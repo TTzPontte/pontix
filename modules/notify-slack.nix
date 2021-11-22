@@ -13,12 +13,6 @@
     default = "SLACK_BOT_TOKEN";
     example = "SLACK_BOT_TOKEN";
   };
-  options.notify-slack.tag = lib.mkOption {
-    type = lib.types.bool;
-    description = "IF after notificaiton it also creates a TAG";
-    default = true;
-    example = false;
-  };
   config.files.cmds.curl = true;
   config.files.cmds.jq = true;
   config.files.cmds.git-extras = true;
@@ -47,11 +41,7 @@
     "
   '';
   config.gh-actions.notify-slack.build = "notify-slack-gh-build";
-  config.gh-actions.notify-slack.post-deploy = lib.mkIf config.notify-slack.tag ''
-    git tag v$(convco version --bump)
-    git push --tag
-  '';
-  config.gh-actions.notify-slack.env.GIPHY_TOKEN = ''${"$"}{{ secrets.GIPHY_TOKEN }}'';
-  config.gh-actions.notify-slack.env.SLACK_BOT_CHANNEL = ''${"$"}{{ secrets.SLACK_BOT_CHANNEL }}'';
-  config.gh-actions.notify-slack.env.SLACK_BOT_TOKEN = ''${"$"}{{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}'';
+  config.gh-actions.notify-slack.env.build.GIPHY_TOKEN = ''${"$"}{{ secrets.GIPHY_TOKEN }}'';
+  config.gh-actions.notify-slack.env.build.SLACK_BOT_CHANNEL = ''${"$"}{{ secrets.SLACK_BOT_CHANNEL }}'';
+  config.gh-actions.notify-slack.env.build.SLACK_BOT_TOKEN = ''${"$"}{{ secrets.SLACK_BOT_TOKEN_GIT_ACTION }}'';
 }
