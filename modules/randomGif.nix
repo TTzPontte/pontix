@@ -9,7 +9,7 @@
   options.random-gif.rating = lib.mkOption {
     type = lib.types.nonEmptyStr;
     description = "random gif rating https://developers.giphy.com/docs/optional-settings/#rating";
-    default = "pg-13";
+    default = "pg";
     example = "pg";
   };
   options.random-gif.api-key-env-var = lib.mkOption {
