@@ -3,6 +3,7 @@
     ./modules/notify-slack.nix
     ./modules/aws.nix
     ./modules/git.nix
+    ./modules/docs.nix
   ];
   # enable .gitignore creation
   config.files.gitignore.enable = true;
