@@ -38,11 +38,11 @@
         "nmd": "nmd"
       },
       "locked": {
-        "lastModified": 1637299115,
-        "narHash": "sha256-wh//X/3QfBB+mGevGWV4cQmr2QfzxvWNowSN33TTj00=",
+        "lastModified": 1637893793,
+        "narHash": "sha256-SpXqXW5AtEgIzpHAc9EqetG0RBEpPFvMcy9ZyiegGbo=",
         "owner": "cruel-intentions",
         "repo": "devshell-files",
-        "rev": "83f529e96ebe0d3ddd112acf6cc9306f5296c783",
+        "rev": "a30eb23e780a29fdd4d0bc6806aa57e6bc00f547",
         "type": "github"
       },
       "original": {
@@ -59,11 +59,11 @@
         "nmd": "nmd_2"
       },
       "locked": {
-        "lastModified": 1637188214,
-        "narHash": "sha256-aN69kv1YktUxUAIEfWNP3vyfgzOFXtgtc8Bsy451NHk=",
+        "lastModified": 1637893793,
+        "narHash": "sha256-SpXqXW5AtEgIzpHAc9EqetG0RBEpPFvMcy9ZyiegGbo=",
         "owner": "cruel-intentions",
         "repo": "devshell-files",
-        "rev": "71e636490b4bb9ca45145cbd2863ef8003f197fe",
+        "rev": "a30eb23e780a29fdd4d0bc6806aa57e6bc00f547",
         "type": "github"
       },
       "original": {
@@ -107,11 +107,11 @@
         "dsf": "dsf_2"
       },
       "locked": {
-        "lastModified": 1637610348,
-        "narHash": "sha256-VOhOvCiBrdhFr5uu3geriOlDVlz6wb0OVcZSe6nDofg=",
+        "lastModified": 1637893921,
+        "narHash": "sha256-AdBNPzE2Qey9QQsvnnU00Yo5wKMMcnK94r6IAeQi+kQ=",
         "owner": "cruel-intentions",
         "repo": "gh-actions",
-        "rev": "b081caf91aa082a664adb5f5d197117db2710b74",
+        "rev": "7e267d44083c7daeacfa60865d08b52aa0108826",
         "type": "github"
       },
       "original": {
