@@ -248,7 +248,7 @@ non-empty string
 
 ```nix
 {
-  config.random-gif.tag = "happy";
+  config.random-gif.tag = "celebrate";
 }
 ```
 
