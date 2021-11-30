@@ -10,9 +10,14 @@
   config.files.alias.fix = ''convco commit --fix $@'';
   config.files.alias.chore = ''convco commit --chore $@'';
   config.files.alias.tag-it = ''
-    echo Old tag v$(convco version)
-    echo New tag v$(convco version --bump)
-    git tag v$(convco version --bump)
+    STAGE=$(get-stage)
+    SUFFIX="-$STAGE"
+    if echo "$STAGE" | grep -q '^prod$'; then
+      SUFFIX=""
+    fi
+    echo Old tag v$(convco version)$SUFFIX
+    echo New tag v$(convco version --bump)$SUFFIX
+    git tag v$(convco version --bump)$SUFFIX
     git push --tag
   '';
   config.files.alias.get-stage = ''
