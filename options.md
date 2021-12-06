@@ -1,12 +1,12 @@
-#### config.notify-slack.api-key-env-var
+## config.notify-slack.api-key-env-var
 
 Env var name of bot API TOKEN
 
-**type**
+#### type
 
 non-empty string
 
-**example**
+#### example
 
 ```nix
 {
@@ -14,7 +14,7 @@ non-empty string
 }
 ```
 
-**default**
+#### default
 
 ```nix
 {
@@ -23,15 +23,15 @@ non-empty string
 ```
 
 
-#### config.notify-slack.gifted-branch
+## config.notify-slack.gifted-branch
 
 branch with random gif
 
-**type**
+#### type
 
 non-empty string
 
-**example**
+#### example
 
 ```nix
 {
@@ -39,7 +39,7 @@ non-empty string
 }
 ```
 
-**default**
+#### default
 
 ```nix
 {
@@ -48,16 +48,16 @@ non-empty string
 ```
 
 
-#### config.pontix.aws
+## config.pontix.aws
 
 Pontte AWS Options
 
-**type**
+#### type
 
 submodule
 
 
-**default**
+#### default
 
 ```nix
 {
@@ -66,16 +66,16 @@ submodule
 ```
 
 
-#### config.pontix.aws.ci-cd
+## config.pontix.aws.ci-cd
 
 Pontte AWS Options for CI-CD
 
-**type**
+#### type
 
 submodule
 
 
-**default**
+#### default
 
 ```nix
 {
@@ -84,16 +84,16 @@ submodule
 ```
 
 
-#### config.pontix.aws.ci-cd.envs
+## config.pontix.aws.ci-cd.envs
 
 Pontte AWS Options for CI-CD defauult env
 
-**type**
+#### type
 
 attribute set of strings
 
 
-**default**
+#### default
 
 ```nix
 {
@@ -106,16 +106,16 @@ attribute set of strings
 ```
 
 
-#### config.pontix.aws.ci-cd.secrets
+## config.pontix.aws.ci-cd.secrets
 
 Pontte AWS Options for CI-CD secret names
 
-**type**
+#### type
 
 submodule
 
 
-**default**
+#### default
 
 ```nix
 {
@@ -124,16 +124,16 @@ submodule
 ```
 
 
-#### config.pontix.aws.ci-cd.secrets.id
+## config.pontix.aws.ci-cd.secrets.id
 
 name of secret with AWS_ACCESS_KEY_ID
 
-**type**
+#### type
 
 unspecified
 
 
-**default**
+#### default
 
 ```nix
 {
@@ -142,16 +142,16 @@ unspecified
 ```
 
 
-#### config.pontix.aws.ci-cd.secrets.key
+## config.pontix.aws.ci-cd.secrets.key
 
 name of secret with AWS_SECRET_ACCESS_KEY
 
-**type**
+#### type
 
 unspecified
 
 
-**default**
+#### default
 
 ```nix
 {
@@ -160,16 +160,16 @@ unspecified
 ```
 
 
-#### config.pontix.aws.ci-cd.secrets.region
+## config.pontix.aws.ci-cd.secrets.region
 
 name of secret with AWS_DEFAULT_REGION
 
-**type**
+#### type
 
 unspecified
 
 
-**default**
+#### default
 
 ```nix
 {
@@ -178,15 +178,15 @@ unspecified
 ```
 
 
-#### config.random-gif.api-key-env-var
+## config.random-gif.api-key-env-var
 
 random gif name of env var with API TOKEN
 
-**type**
+#### type
 
 non-empty string
 
-**example**
+#### example
 
 ```nix
 {
@@ -194,7 +194,7 @@ non-empty string
 }
 ```
 
-**default**
+#### default
 
 ```nix
 {
@@ -203,15 +203,15 @@ non-empty string
 ```
 
 
-#### config.random-gif.rating
+## config.random-gif.rating
 
 random gif rating https://developers.giphy.com/docs/optional-settings/#rating
 
-**type**
+#### type
 
 non-empty string
 
-**example**
+#### example
 
 ```nix
 {
@@ -219,7 +219,7 @@ non-empty string
 }
 ```
 
-**default**
+#### default
 
 ```nix
 {
@@ -228,15 +228,15 @@ non-empty string
 ```
 
 
-#### config.random-gif.tag
+## config.random-gif.tag
 
 random gif search tag
 
-**type**
+#### type
 
 non-empty string
 
-**example**
+#### example
 
 ```nix
 {
@@ -244,7 +244,7 @@ non-empty string
 }
 ```
 
-**default**
+#### default
 
 ```nix
 {
