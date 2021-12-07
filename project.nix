@@ -6,10 +6,10 @@
     ./modules/docs.nix
   ];
   # enable .gitignore creation
-  config.files.gitignore.enable = true;
+  files.gitignore.enable = true;
   # add hello.yaml to .gitignore
-  config.files.gitignore.pattern."github-actions" = true;
+  files.gitignore.pattern."github-actions" = true;
   # copy contents from https://github.com/github/gitignore
-  config.gh-actions.notify-slack.enable = true;
-  config.gh-actions.notify-slack.post-deploy = "tag-it";
+  gh-actions.notify-slack.enable = true;
+  gh-actions.notify-slack.post-deploy = "tag-it";
 }

@@ -1,4 +1,4 @@
-## config.notify-slack.api-key-env-var
+## notify-slack.api-key-env-var
 
 Env var name of bot API TOKEN
 
@@ -10,7 +10,7 @@ non-empty string
 
 ```nix
 {
-  config.notify-slack.api-key-env-var = "SLACK_BOT_TOKEN";
+  notify-slack.api-key-env-var = "SLACK_BOT_TOKEN";
 }
 ```
 
@@ -18,12 +18,12 @@ non-empty string
 
 ```nix
 {
-  config.notify-slack.api-key-env-var = "SLACK_BOT_TOKEN";
+  notify-slack.api-key-env-var = "SLACK_BOT_TOKEN";
 }
 ```
 
 
-## config.notify-slack.gifted-branch
+## notify-slack.gifted-branch
 
 branch with random gif
 
@@ -35,7 +35,7 @@ non-empty string
 
 ```nix
 {
-  config.notify-slack.gifted-branch = "main";
+  notify-slack.gifted-branch = "main";
 }
 ```
 
@@ -43,14 +43,14 @@ non-empty string
 
 ```nix
 {
-  config.notify-slack.gifted-branch = "master";
+  notify-slack.gifted-branch = "master";
 }
 ```
 
 
-## config.pontix.aws
+## pontix.aws
 
-Pontte AWS Options
+Ponttix AWS Options
 
 #### type
 
@@ -61,12 +61,12 @@ submodule
 
 ```nix
 {
-  config.pontix.aws = {};
+  pontix.aws = {};
 }
 ```
 
 
-## config.pontix.aws.ci-cd
+## pontix.aws.ci-cd
 
 Pontte AWS Options for CI-CD
 
@@ -79,12 +79,12 @@ submodule
 
 ```nix
 {
-  config.pontix.aws.ci-cd = {};
+  pontix.aws.ci-cd = {};
 }
 ```
 
 
-## config.pontix.aws.ci-cd.envs
+## pontix.aws.ci-cd.envs
 
 Pontte AWS Options for CI-CD defauult env
 
@@ -97,7 +97,7 @@ attribute set of strings
 
 ```nix
 {
-  config.pontix.aws.ci-cd.envs = {
+  pontix.aws.ci-cd.envs = {
     AWS_ACCESS_KEY_ID = "${{ secrets.AWS_ACCESS_KEY_ID }}";
     AWS_DEFAULT_REGION = "${{ secrets.AWS_DEFAULT_REGION }}";
     AWS_SECRET_ACCESS_KEY = "${{ secrets.AWS_SECRET_ACCESS_KEY }}";
@@ -106,7 +106,7 @@ attribute set of strings
 ```
 
 
-## config.pontix.aws.ci-cd.secrets
+## pontix.aws.ci-cd.secrets
 
 Pontte AWS Options for CI-CD secret names
 
@@ -119,12 +119,12 @@ submodule
 
 ```nix
 {
-  config.pontix.aws.ci-cd.secrets = {};
+  pontix.aws.ci-cd.secrets = {};
 }
 ```
 
 
-## config.pontix.aws.ci-cd.secrets.id
+## pontix.aws.ci-cd.secrets.id
 
 name of secret with AWS_ACCESS_KEY_ID
 
@@ -137,12 +137,12 @@ unspecified
 
 ```nix
 {
-  config.pontix.aws.ci-cd.secrets.id = "AWS_ACCESS_KEY_ID";
+  pontix.aws.ci-cd.secrets.id = "AWS_ACCESS_KEY_ID";
 }
 ```
 
 
-## config.pontix.aws.ci-cd.secrets.key
+## pontix.aws.ci-cd.secrets.key
 
 name of secret with AWS_SECRET_ACCESS_KEY
 
@@ -155,12 +155,12 @@ unspecified
 
 ```nix
 {
-  config.pontix.aws.ci-cd.secrets.key = "AWS_SECRET_ACCESS_KEY";
+  pontix.aws.ci-cd.secrets.key = "AWS_SECRET_ACCESS_KEY";
 }
 ```
 
 
-## config.pontix.aws.ci-cd.secrets.region
+## pontix.aws.ci-cd.secrets.region
 
 name of secret with AWS_DEFAULT_REGION
 
@@ -173,12 +173,12 @@ unspecified
 
 ```nix
 {
-  config.pontix.aws.ci-cd.secrets.region = "AWS_DEFAULT_REGION";
+  pontix.aws.ci-cd.secrets.region = "AWS_DEFAULT_REGION";
 }
 ```
 
 
-## config.random-gif.api-key-env-var
+## random-gif.api-key-env-var
 
 random gif name of env var with API TOKEN
 
@@ -190,7 +190,7 @@ non-empty string
 
 ```nix
 {
-  config.random-gif.api-key-env-var = "GIPHY_TOKEN";
+  random-gif.api-key-env-var = "GIPHY_TOKEN";
 }
 ```
 
@@ -198,12 +198,12 @@ non-empty string
 
 ```nix
 {
-  config.random-gif.api-key-env-var = "GIPHY_TOKEN";
+  random-gif.api-key-env-var = "GIPHY_TOKEN";
 }
 ```
 
 
-## config.random-gif.rating
+## random-gif.rating
 
 random gif rating https://developers.giphy.com/docs/optional-settings/#rating
 
@@ -215,7 +215,7 @@ non-empty string
 
 ```nix
 {
-  config.random-gif.rating = "pg";
+  random-gif.rating = "pg";
 }
 ```
 
@@ -223,12 +223,12 @@ non-empty string
 
 ```nix
 {
-  config.random-gif.rating = "pg";
+  random-gif.rating = "pg";
 }
 ```
 
 
-## config.random-gif.tag
+## random-gif.tag
 
 random gif search tag
 
@@ -240,7 +240,7 @@ non-empty string
 
 ```nix
 {
-  config.random-gif.tag = "cry";
+  random-gif.tag = "cry";
 }
 ```
 
@@ -248,7 +248,7 @@ non-empty string
 
 ```nix
 {
-  config.random-gif.tag = "celebrate";
+  random-gif.tag = "celebrate";
 }
 ```
 
