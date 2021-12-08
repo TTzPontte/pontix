@@ -20,7 +20,7 @@
         TAG="science"
       fi
       if echo "$ACTOR" | grep -iq 'Mr-i-me|lucas'; then
-        TAG="troppy"
+        TAG="trippy"
       fi
       if echo "$ACTOR" | grep -iq 'oliver'; then
         TAG="pizza"
