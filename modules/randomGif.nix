@@ -42,8 +42,8 @@
   '';
   files.alias.random-gif = ''
     GIF_RATING="${config.random-gif.rating}"
-    GIF_TAG=random-git-tag
+    GIF_TAG=`random-gif-tag`
     GIPHY_TOKEN="${"$"}${config.random-gif.api-key-env-var}"
-    curl -s https://api.giphy.com/v1/gifs/random?api_key=$GIPHY_TOKEN&tag=$GIF_TAG&rating=$GIF_RATING
+    curl -s "https://api.giphy.com/v1/gifs/random?api_key=$GIPHY_TOKEN&tag=$GIF_TAG&rating=$GIF_RATING"
   '';
 }
